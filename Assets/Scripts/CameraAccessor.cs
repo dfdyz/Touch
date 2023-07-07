@@ -8,6 +8,9 @@ public class CameraAccessor : MonoBehaviour
     private Camera _camera;
     [SerializeField]
     private GameObject lookAt;
+
+    //private Vector3 targetPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +20,17 @@ public class CameraAccessor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //transform.position = Vector3.Lerp(transform.position, targetPos, Managers.Instance.MultiCameraMgr.smoothing);
     }
 
     public void setFov(float ang)
     {
         _camera.fieldOfView = ang;
+    }
+
+    public void setPosition(Vector3 pos)
+    {
+        transform.position = pos;
     }
     public Vector3 getLookAtPosition() {
         return lookAt.transform.position;

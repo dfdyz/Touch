@@ -3,7 +3,7 @@ Shader "Custom/CameraMask"
     Properties
     {
         _MainTex ("Rendering", 2D) = "black" {}
-        _Ang("Rad", Range(0,3.15)) = 0
+        _Ang("Rad", Range(-3.15,3.15)) = 0
     }
     SubShader
     {
@@ -53,7 +53,7 @@ Shader "Custom/CameraMask"
                     return fixed4(0,0,0,0);
                 }
 
-                col.rgb = 1 - col.rgb;
+                //col.rgb = 1 - col.rgb;
                 return col;
             }
             ENDCG

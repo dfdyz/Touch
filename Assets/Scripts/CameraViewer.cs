@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,8 @@ public class CameraViewer : MonoBehaviour
         
     }
 
-    public void setAng(float rad)
+    public void setAng(float ang)
     {
-        material.SetFloat("_Ang", rad);
+        material.SetFloat("_Ang", (ang / 180 * Mathf.PI));
     }
 }
