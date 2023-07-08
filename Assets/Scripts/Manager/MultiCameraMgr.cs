@@ -55,8 +55,5 @@ public class MultiCameraMgr : MonoBehaviour
 
 
         viwer.setAng(-ang+90);
-
-
-
     }
 }
