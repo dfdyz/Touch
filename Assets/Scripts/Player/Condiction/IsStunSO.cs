@@ -11,14 +11,15 @@ public class IsStunSO : StateConditionSO
 public class IsStun : Condition
 {
 	protected new IsStunSO OriginSO => (IsStunSO)base.OriginSO;
-
-	public override void Awake(StateMachine stateMachine)
+    protected PlayerEntity player;
+    public override void Awake(StateMachine stateMachine)
 	{
-	}
+        player = stateMachine.GetComponent<PlayerEntity>();
+    }
 	
 	protected override bool Statement()
 	{
-		return true;
+		return player.isStun();
 	}
 	
 	public override void OnStateEnter()

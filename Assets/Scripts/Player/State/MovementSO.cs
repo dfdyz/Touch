@@ -11,13 +11,19 @@ public class MovementSO : StateActionSO
 public class Movement : StateAction
 {
 	protected new MovementSO OriginSO => (MovementSO)base.OriginSO;
+	protected PlayerEntity player;
 
 	public override void Awake(StateMachine stateMachine)
 	{
+		player = stateMachine.GetComponent<PlayerEntity>();
 	}
 	
 	public override void OnUpdate()
 	{
+
+
+
+
 	}
 	
 	public override void OnStateEnter()

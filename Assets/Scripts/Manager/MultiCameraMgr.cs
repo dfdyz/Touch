@@ -14,10 +14,6 @@ public class MultiCameraMgr : MonoBehaviour
     [SerializeField]
     private float maxDistance = 14;
 
-    public float smoothing = 0.15f;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +38,6 @@ public class MultiCameraMgr : MonoBehaviour
 
         if (lengh2 >= maxDistance)
         {
-            print("AAAAAAAA");
             Vector3 v = Vec.normalized * maxDistance / 2 * lengh1 / lengh2;
             camA.setPosition(LookA + v);
             camB.setPosition(LookB - v);
