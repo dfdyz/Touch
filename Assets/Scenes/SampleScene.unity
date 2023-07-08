@@ -546,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MultiCameraMgr: {fileID: 611721026}
   LogicMgr: {fileID: 0}
-  dmgArg: 0.01
+  dmgArg: 0.003
 --- !u!4 &611721028
 Transform:
   m_ObjectHideFlags: 0

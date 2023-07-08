@@ -12,6 +12,7 @@ public class Strike : StateAction
 {
 	protected new StrikeSO OriginSO => (StrikeSO)base.OriginSO;
 	protected PlayerEntity player;
+	protected Vector3 v;
 
 	public override void Awake(StateMachine stateMachine)
 	{
@@ -20,14 +21,16 @@ public class Strike : StateAction
 	
 	public override void OnUpdate()
 	{
-	}
+        player.rb.velocity = v * player.getMaxSpeed() * 1.4f;
+    }
 	
 	public override void OnStateEnter()
 	{
-
-	}
+		v = player.GetDiraction().normalized;
+    }
 	
 	public override void OnStateExit()
 	{
-	}
+        player.rb.velocity = v * player.getMaxSpeed() * 0.6f;
+    }
 }

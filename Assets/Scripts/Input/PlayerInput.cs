@@ -10,7 +10,7 @@ namespace Input
 
         private float x_input;
         private float y_input;
-        private bool onStrike;
+        private bool onStrike = false;
         private bool onMiss;
         private Vector3 direction = new Vector3(0,0,0);
 

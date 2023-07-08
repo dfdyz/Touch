@@ -14,12 +14,14 @@ public class IsStrike : Condition
 	protected PlayerEntity player;
 	public override void Awake(StateMachine stateMachine)
 	{
-		player = stateMachine.GetComponent<PlayerEntity>();
-	}
+        player = stateMachine.GetComponent<PlayerEntity>();
+ 
+    }
 	
 	protected override bool Statement()
 	{
-		return player.isStriking();
+		//return false;
+		return player.isStriking;
 	}
 	
 	public override void OnStateEnter()
