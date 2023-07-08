@@ -15,6 +15,12 @@ public class BuffProvider : EntityBase
     [SerializeField]
     private BuffType Type = BuffType.None;
 
+    [SerializeField]
+    private Animator animtor;
+
+    [SerializeField] 
+    private Collider coll;
+
     public enum BuffType
     {
         None, Mass, Speed, Stun
@@ -39,11 +45,28 @@ public class BuffProvider : EntityBase
         return buff;
     }
 
+    public override void GetDamage(float delta, PlayerEntity damager)
+    {
+        base.GetDamage(delta, damager);
+        
+        var hpRate = GetHPRate();
+        if (hpRate > 40 && hpRate < 80)
+        {
+            animtor.Play("stage2");
+        }
+        else if(hpRate <= 40 && health > 0)
+        {
+            animtor.Play("stage3");
+        }
+    }
+
     protected override void KilledBy(PlayerEntity killer)
     {
+        animtor.Play("broken");
+        coll.enabled = false;
         BuffBase buff = GetBuff(out var type);
         //print(type);
         killer.SetBuff(type,buff);
-        GameObject.Destroy(gameObject);
+        GameObject.Destroy(this,1.5f);
     }
 }

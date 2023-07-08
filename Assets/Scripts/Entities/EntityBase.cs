@@ -41,14 +41,14 @@ public class EntityBase : MonoBehaviour
         health = health - delta > 0 ? health - delta : 0;
     }
 
-    public void GetDamage(float delta, PlayerEntity damager)
+    public virtual void GetDamage(float delta, PlayerEntity damager)
     {
         health = health - delta > 0 ? health - delta : 0;
         if (!IsAlive())
         {
             KilledBy(damager);
         }
-            
+
     }
 
     protected virtual void KilledBy(PlayerEntity killer)
