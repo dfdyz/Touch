@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Input;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UOP1.StateMachine;
@@ -9,6 +10,9 @@ public class PlayerEntity : EntityBase
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
+    
+    [SerializeField]
+    private PlayerInput playerInput;
 
     [SerializeField]
     private GameObject indicator;
@@ -39,12 +43,12 @@ public class PlayerEntity : EntityBase
         rebornPos = transform.position;
     }
 
+
     public Vector3 GetDiraction()
     {
-        return Vector3.one;
+        return playerInput.Direction;
     }
-
-
+    
 
     void Awake()
     {
@@ -59,12 +63,12 @@ public class PlayerEntity : EntityBase
 
     public bool isStriking()
     {
-        return strike;
+        return playerInput.IsStriking;
     }
 
     public bool isMiss()
     {
-        return miss;
+        return playerInput.IsMissing;
     }
 
     public float getMass()
