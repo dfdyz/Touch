@@ -12,6 +12,7 @@ public class IsMove : Condition
 {
 	protected new IsMoveSO OriginSO => (IsMoveSO)base.OriginSO;
 	protected Rigidbody rb;
+	protected bool s = false;
 	public override void Awake(StateMachine stateMachine)
 	{
 		rb = stateMachine.GetComponent<Rigidbody>();
@@ -19,7 +20,14 @@ public class IsMove : Condition
 	
 	protected override bool Statement()
 	{
-		return rb.velocity.magnitude > 0.1f;
+		if (s)
+		{
+			return rb.velocity.magnitude > 0.18f;
+        }
+		else
+		{
+            return rb.velocity.magnitude < 0.12f;
+        }
 	}
 	
 	public override void OnStateEnter()
