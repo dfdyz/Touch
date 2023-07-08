@@ -14,8 +14,18 @@ namespace Input
         private bool onMiss;
         private Vector3 direction = new Vector3(0,0,0);
 
-        public bool IsStriking => onStrike;
-        public bool IsMissing => onMiss;
+        public bool IsStriking
+        {
+            get => onStrike;
+            set => onStrike = value;
+        }
+
+        public bool IsMissing
+        {
+            get => onMiss;
+            set => onMiss = value;
+        }
+
         public Vector3 Direction
         {
             get
