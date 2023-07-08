@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class MainLogic : MonoBehaviour
 {
+    [Header("Reborn")]
+    [SerializeField] 
+    private float rebornTime;
     [SerializeField]
     private PlayerEntity playerA;
     [SerializeField]
     private PlayerEntity playerB;
 
     [SerializeField]
-    private SpawnPoint spawnPointA;
+    private Transform spawnPointA;
 
     [SerializeField]
-    private SpawnPoint spawnPointB;
+    private Transform spawnPointB;
 
     [Header("Listen to")] 
     [SerializeField] 
@@ -35,13 +38,10 @@ public class MainLogic : MonoBehaviour
 
     private void OnPlayerDieRaised(int playerID)
     {
-        RebornPlayer(playerID);
+        print($"player die : " + playerID);
+        StartCoroutine(playerWin(playerID));
     }
-
-    void FixedUpdate()
-    {
-        
-    }
+    
 
     public void RebornPlayer(int player)
     {
@@ -55,7 +55,29 @@ public class MainLogic : MonoBehaviour
     }
 
     private IEnumerator gameStart() {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0f);
         RebornPlayer(1);
+        RebornPlayer(2);
+
+    }
+
+    private IEnumerator playerWin(int deadPlayer)
+    {
+        var waitTime = new WaitForSeconds(2f);
+        if (deadPlayer == 2)
+        {
+            playerA.isWinning = true;
+            yield return waitTime;
+            RebornPlayer(2);
+            playerA.isWinning = false;
+        }
+        else if(deadPlayer == 1)
+        {
+            playerB.isWinning = true;
+            yield return waitTime;
+            RebornPlayer(1);
+            playerB.isWinning = false;
+            print("player2 win over");
+        }
     }
 }

@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48998a87f9b44648d0a64c7639490cf, type: 3}
-  m_Name: Player2_InputReader
+  m_Script: {fileID: 11500000, guid: 35432205b9a6a374bbbfe6b7cac92179, type: 3}
+  m_Name: Win
   m_EditorClassIdentifier: 
-  _playerID: 2
+  _actions:
+  - {fileID: 11400000, guid: e02a2977ae54f854c87373dbb50c1928, type: 2}
+  - {fileID: 11400000, guid: 203dd37c9e9b7e848815a25946049c56, type: 2}

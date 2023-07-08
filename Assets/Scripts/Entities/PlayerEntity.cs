@@ -10,6 +10,10 @@ using UOP1.StateMachine;
 
 public class PlayerEntity : EntityBase
 {
+    [Header("Event Broadcast")]
+    [SerializeField]
+    private IntEventChannelSO playerDieEvent;
+    
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
@@ -22,11 +26,14 @@ public class PlayerEntity : EntityBase
 
     public Rigidbody rb;
 
-    [Header("Arguements")]
+    [Header("Arguements")] 
+    [SerializeField]
+    private PlayerID id;
     [SerializeField]
     private float maxSpeed = 5;
     [SerializeField]
     private AnimationCurve v_a_Curve;
+    
     
 
     [SerializeField]
@@ -38,6 +45,8 @@ public class PlayerEntity : EntityBase
     private bool miss = false;
     [SerializeField]
     private bool reborning = false;
+    [HideInInspector] 
+    public bool isWinning = false;
 
     [SerializeField]
     private float mass = 10;
@@ -61,6 +70,7 @@ public class PlayerEntity : EntityBase
 
     public Vector3 GetDiraction()
     {
+        if (isWinning) return Vector3.zero;
         return playerInput.Direction;
     }
     
@@ -84,14 +94,28 @@ public class PlayerEntity : EntityBase
         return stun || GetHP() <= 0 || reborning;
     }
 
-    public bool isStriking()
+    public bool isStriking
     {
-        return playerInput.IsStriking;
+        get
+        {
+            return playerInput.IsStriking;
+        }
+        set
+        {
+            playerInput.IsStriking = false;
+        }
     }
 
-    public bool isMiss()
+    public bool isMiss
     {
-        return playerInput.IsMissing;
+        get
+        {
+            return playerInput.IsMissing;
+        }
+        set
+        {
+            playerInput.IsMissing = value;
+        }
     }
 
     public float getMass()
@@ -183,6 +207,17 @@ public class PlayerEntity : EntityBase
             Vector3 pos = transform.position;
             transform.position = Vector3.Lerp(pos, rebornPos, 0.05f);
             if((rebornPos - pos).magnitude <= 0.001f) reborning = false;
+        }
+    }
+
+    public override void GetDamage(float delta)
+    {
+        if (reborning) return;
+        base.GetDamage(delta);
+        if (health <= 0)
+        {
+            health = 0;
+            playerDieEvent.RaiseEvent((int)id);
         }
     }
 

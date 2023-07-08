@@ -7,8 +7,8 @@ namespace Input
 {
     public enum PlayerID
     {
-        Player_1,
-        Player_2,
+        Player_1 = 1,
+        Player_2 = 2,
     }
     
     [CreateAssetMenu(fileName = "InputReader", menuName = "Game/InputReader")]

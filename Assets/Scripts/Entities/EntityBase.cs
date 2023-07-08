@@ -31,17 +31,12 @@ public class EntityBase : MonoBehaviour
         return maxHealth;
     }
 
-    public virtual bool ShouldRemove()
-    {
-        return IsAlive();
-    }
-
     public bool IsAlive()
     {
         return health > 0;
     }
 
-    public void GetDamage(float delta)
+    public virtual void GetDamage(float delta)
     {
         health = health - delta > 0 ? health - delta : 0;
     }
