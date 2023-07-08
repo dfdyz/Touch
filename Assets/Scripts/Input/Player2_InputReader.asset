@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48998a87f9b44648d0a64c7639490cf, type: 3}
   m_Name: Player2_InputReader
   m_EditorClassIdentifier: 
-  _playerID: 0
+  _playerID: 1

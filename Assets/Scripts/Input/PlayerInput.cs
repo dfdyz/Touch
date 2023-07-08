@@ -46,12 +46,7 @@ namespace Input
             _inputReader.MissCancledEvent -= OnMissCancled;
         }
 
-        private void OnXMove(float value)
-        {
-            Debug.Log($"Move : " + x_input);
-            x_input = value;
-        }
-
+        private void OnXMove(float value) => x_input = value;
         private void OnYMove(float value) => y_input = value;
         private void OnStrike() => onStrike = true;
         private void OnStrikeCancled() => onStrike = false;
