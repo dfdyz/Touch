@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432205b9a6a374bbbfe6b7cac92179, type: 3}
-  m_Name: Movement
+  m_Script: {fileID: 11500000, guid: 993d24a0eea2bbf43a8598b4ed76ca53, type: 3}
+  m_Name: A_Anim_StunTrue
   m_EditorClassIdentifier: 
-  _actions:
-  - {fileID: 11400000, guid: 203dd37c9e9b7e848815a25946049c56, type: 2}
+  description: "OnEnter_\u65F6Stun = true"
+  parameterType: 0
+  parameterName: Stun
+  boolValue: 1
+  intValue: 0
+  floatValue: 0
+  whenToRun: 0

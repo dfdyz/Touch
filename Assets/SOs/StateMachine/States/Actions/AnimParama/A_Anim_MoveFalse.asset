@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432205b9a6a374bbbfe6b7cac92179, type: 3}
-  m_Name: Stun
+  m_Script: {fileID: 11500000, guid: 993d24a0eea2bbf43a8598b4ed76ca53, type: 3}
+  m_Name: A_Anim_MoveFalse
   m_EditorClassIdentifier: 
-  _actions:
-  - {fileID: 11400000, guid: d68889a122ef3c148a1820ad8e8d7168, type: 2}
+  description: "OnExit_\u65F6\uFF0CMove=false"
+  parameterType: 0
+  parameterName: Move
+  boolValue: 0
+  intValue: 0
+  floatValue: 0
+  whenToRun: 1
