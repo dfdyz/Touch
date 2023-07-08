@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Transition
   m_EditorClassIdentifier: 
   _transitions:
+  - FromState: {fileID: 11400000, guid: f77c43b7899319f4a87d9a1991b9fa46, type: 2}
+    ToState: {fileID: 11400000, guid: 49586b97fc2ae2342887e5340fb39549, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: e595fc40b434cd5439565f4d80a51d66, type: 2}
+      Operator: 0
   - FromState: {fileID: 11400000, guid: 49586b97fc2ae2342887e5340fb39549, type: 2}
     ToState: {fileID: 11400000, guid: 5cd2c5cf744f1764eb7e72e7d7de0dce, type: 2}
     Conditions:
@@ -24,4 +30,10 @@ MonoBehaviour:
     Conditions:
     - ExpectedResult: 1
       Condition: {fileID: 11400000, guid: 8ac220dc4f323314ab0b90f1e1edd042, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 49586b97fc2ae2342887e5340fb39549, type: 2}
+    ToState: {fileID: 11400000, guid: f77c43b7899319f4a87d9a1991b9fa46, type: 2}
+    Conditions:
+    - ExpectedResult: 1
+      Condition: {fileID: 11400000, guid: e595fc40b434cd5439565f4d80a51d66, type: 2}
       Operator: 0

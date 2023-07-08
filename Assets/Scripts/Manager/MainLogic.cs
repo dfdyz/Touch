@@ -15,6 +15,10 @@ public class MainLogic : MonoBehaviour
     [SerializeField]
     private SpawnPoint spawnPointB;
 
+    [Header("Listen to")] 
+    [SerializeField] 
+    private IntEventChannelSO playerDieEvent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,13 @@ public class MainLogic : MonoBehaviour
     public void GameStart()
     {
         StartCoroutine(gameStart());
+
+        playerDieEvent.OnEventRaised += OnPlayerDieRaised;
+    }
+
+    private void OnPlayerDieRaised(int playerID)
+    {
+        RebornPlayer(playerID);
     }
 
     void FixedUpdate()

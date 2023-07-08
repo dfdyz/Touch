@@ -7,7 +7,7 @@ public class StrikeAttacker : MonoBehaviour
 
     public void OnAttack(bool on,GameObject other)
     {
-        if (enabled)
+        if (on)
         {
             print($"OnAttack");
 
