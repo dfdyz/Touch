@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 589718405}
   - component: {fileID: 589718404}
   - component: {fileID: 589718403}
+  - component: {fileID: 589718408}
   m_Layer: 0
   m_Name: PlayerA
   m_TagString: Untagged
@@ -483,8 +484,14 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   stateMachine: {fileID: 589718406}
+  playerInput: {fileID: 589718408}
+  indicator: {fileID: 1224634511}
   rb: {fileID: 589718403}
+  maxSpeed: 5
   stun: 0
+  strike: 0
+  miss: 0
+  reborning: 0
   mass: 10
 --- !u!114 &589718406
 MonoBehaviour:
@@ -521,6 +528,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &589718408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589718402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d7f21c68c547b1a92b72658ce2cfc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 2574e35a3c05d6e4fb24aee667e8e946, type: 2}
 --- !u!1 &663313829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MultiCameraMgr: {fileID: 1857514551}
+  LogicMgr: {fileID: 0}
 --- !u!4 &1857514553
 Transform:
   m_ObjectHideFlags: 0
