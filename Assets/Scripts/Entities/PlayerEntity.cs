@@ -129,7 +129,6 @@ public class PlayerEntity : EntityBase
     {
         GetBuff<BuffBase.HeavyMassBuff>(out var buff);
         if (buff != null){
-            print(mass + buff.value());
             return mass + buff.value(); }
         return mass;
     }
@@ -301,8 +300,7 @@ public class PlayerEntity : EntityBase
         }
         else
         {
-            print(t);
-            BuffContainer.Add(t, buff);
+            BuffContainer[t] = buff;
         }
     }
 
