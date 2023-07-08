@@ -31,7 +31,7 @@ public class MultiCameraMgr : MonoBehaviour
 
         Vector3 Vec = LookB - LookA;
         float ang = Vector3.SignedAngle(Vector3.right, Vec, Vector3.up);
-        Vector3 Vec_ = new Vector3(Vec.x, Vec.y, Vec.z * 1.6666f);
+        Vector3 Vec_ = new Vector3(Vec.x, Vec.y, Vec.z * 1.2f);
 
         float lengh1 = Vec.magnitude;
         float lengh2 = Vec_.magnitude;
