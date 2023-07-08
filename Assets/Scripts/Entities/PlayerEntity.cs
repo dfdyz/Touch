@@ -69,9 +69,9 @@ public class PlayerEntity : EntityBase
         GetBuff<BuffBase.LowStunBuff>(out var buff);
         if (buff != null)
         {
-            return 0.5f + buff.value();
+            return 0.6f + buff.value();
         }
-        return 0.5f;
+        return 0.6f;
     }
     void Awake()
     {
@@ -151,7 +151,7 @@ public class PlayerEntity : EntityBase
         Vector3 v = rb.velocity;
 
         bool hide = v.magnitude < 0.1f;
-        indicator.SetActive(!hide);
+        //indicator.SetActive(!hide);
 
         if(hide)
         {
@@ -217,7 +217,7 @@ public class PlayerEntity : EntityBase
         {
             if (t_buff.Value.isAlive())
             {
-                t_buff.Value.upd(dt);
+                t_buff.Value.upd(this,dt);
             }
         }
     }

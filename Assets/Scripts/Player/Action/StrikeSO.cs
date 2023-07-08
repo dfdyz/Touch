@@ -11,9 +11,11 @@ public class StrikeSO : StateActionSO
 public class Strike : StateAction
 {
 	protected new StrikeSO OriginSO => (StrikeSO)base.OriginSO;
+	protected PlayerEntity player;
 
 	public override void Awake(StateMachine stateMachine)
 	{
+		player = stateMachine.GetComponent<PlayerEntity>();
 	}
 	
 	public override void OnUpdate()
@@ -22,6 +24,7 @@ public class Strike : StateAction
 	
 	public override void OnStateEnter()
 	{
+
 	}
 	
 	public override void OnStateExit()

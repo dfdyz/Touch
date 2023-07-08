@@ -31,18 +31,18 @@ namespace Assets.Scripts.Player
             return 0;
         }
 
-        public virtual void OnUpdate()
+        public virtual void OnUpdate(PlayerEntity player, float dt)
         {
 
         }
-        public virtual void OnRemove()
+        public virtual void OnRemove(PlayerEntity player)
         {
 
         }
 
-        public void upd(float dt)
+        public void upd(PlayerEntity p,float dt)
         {
-            OnUpdate();
+            OnUpdate(p,dt);
             time -= dt;
         }
 
@@ -75,6 +75,14 @@ namespace Assets.Scripts.Player
             {
                 return 10 + 5 * level;
             }
+
+            public override void OnUpdate(PlayerEntity player, float dt)
+            {
+                if (player.isStun() || player.rb.velocity.magnitude < 10f) return;
+                player.Heal(player.GetMaxHP() * 0.01f * dt);
+            }
+            
+           
         }
 
         public class LowStunBuff : BuffBase

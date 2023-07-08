@@ -546,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MultiCameraMgr: {fileID: 611721026}
   LogicMgr: {fileID: 0}
-  dmgArg: 10
+  dmgArg: 0.01
 --- !u!4 &611721028
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,6 +1218,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126165982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126165977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f6b5d5e0aacd34fb55ee24847f4f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  maxHealth: 20
+  time: 5
+  level: 10
+  Type: 1
 --- !u!1 &1179943366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,6 +2479,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3850055811279344708, guid: 53f43f0485a883841a92f721d85808eb, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3850055811279344719, guid: 53f43f0485a883841a92f721d85808eb, type: 3}
       propertyPath: m_Name
       value: PlayerB
@@ -2475,6 +2496,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4523319681315280000, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523319681315280003, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
+      propertyPath: _layers.m_Bits
+      value: 576
+      objectReference: {fileID: 0}
     - target: {fileID: 4523319681315280004, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2518,6 +2547,10 @@ PrefabInstance:
     - target: {fileID: 4523319681315280004, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523319681315280006, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
+      propertyPath: maxSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4523319681315280061, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_Name

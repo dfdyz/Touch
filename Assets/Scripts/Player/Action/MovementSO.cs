@@ -38,7 +38,7 @@ public class Movement : StateAction
         Vector3 Fn = targetVelocy.normalized - currentVelocy.normalized;  //方向修正补偿力
         Vector3 F = targetVelocy - currentVelocy;  //修正力
 
-        float fnArg = 8f*player.getMass();
+        float fnArg = 7f*player.getMass();
         float fArg = player.getAccelerate(currentVelocy.magnitude);
 
         F = F * fArg + Fn * fnArg;
