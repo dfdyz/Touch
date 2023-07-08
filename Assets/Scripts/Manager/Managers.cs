@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class Managers : MonoBehaviour
     public MainLogic LogicMgr;
 
     public float dmgArg = 10;
+    public static float addSpeed_1;
+    public static float addSpeed_2;
+    public static float addMass_1;
+    public static float addMass_2;
+    private bool confirm_1;
+    private bool confirm_2;
+    
     public static class GameLayers
     {
         public static int Player;
@@ -19,7 +27,7 @@ public class Managers : MonoBehaviour
             GameLayers.Player = LayerMask.NameToLayer("Player");
             GameLayers.World = LayerMask.NameToLayer("World");
             GameLayers.Entity = LayerMask.NameToLayer("Entity");
-
+            
         }
 
     }
@@ -32,6 +40,21 @@ public class Managers : MonoBehaviour
     void Start()
     {
         GameLayers.Init();
+    }
+
+    public void PlayerConfirm(int playerid)
+    {
+        if (playerid == 1)
+        {
+            confirm_1 = true;
+        }
+
+        if (playerid == 2)
+        {
+            confirm_2 = true;
+        }
+
+        if (confirm_1 && confirm_2) SceneManager.LoadScene("SampleScene");
     }
 
     // Update is called once per frame

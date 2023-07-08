@@ -62,6 +62,9 @@ public class MainLogic : MonoBehaviour
 
     private IEnumerator gameStart() {
         yield return new WaitForSeconds(0f);
+        
+        playerA.Addms(Managers.addMass_1,Managers.addSpeed_1);
+        playerB.Addms(Managers.addMass_2,Managers.addSpeed_2);
         RebornPlayer(1);
         RebornPlayer(2);
 
@@ -90,6 +93,7 @@ public class MainLogic : MonoBehaviour
                 yield return waitTime;
                 RebornPlayer(2);
                 playerA.isWinning = false;
+                print("player1 win over");
             }
             else if (deadPlayer == 1)
             {

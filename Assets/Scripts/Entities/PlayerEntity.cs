@@ -83,6 +83,12 @@ public class PlayerEntity : EntityBase
         this.stun = stun;
     }
 
+    public void Addms(float _mass,float speed)
+    {
+        maxSpeed += speed;
+        mass += _mass;
+    }
+
     public Vector3 GetDiraction()
     {
         if (isWinning || reborning) return Vector3.zero;
