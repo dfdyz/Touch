@@ -15,6 +15,7 @@ public class StrikeAttacker : MonoBehaviour
 
             if (entity is PlayerEntity player2)
             {
+
                 Vector3 v1 = player.rb.velocity;
                 Vector3 v2 = player2.rb.velocity;
 
@@ -29,7 +30,7 @@ public class StrikeAttacker : MonoBehaviour
 
                 if (v1.magnitude >= 10)
                 {
-                    player2.GetDamage((v1_ -v1).magnitude * m1 * Managers.Instance.dmgArg * m1 / m2 * player.getMaxSpeed()/ player2.getMaxSpeed(), player);
+                    player2.GetDamage((v1_ -v1).magnitude * m1 * Managers.Instance.dmgArg * m1 / m2 * player.getMaxSpeed()/ player2.getMaxSpeed());
                     //player.GetDamage(m1 * (v1_ - v1).magnitude * Managers.Instance.dmgArg * 0.0001f*0.3f, player2);
                 }
 

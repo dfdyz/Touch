@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
@@ -20,7 +20,6 @@ public class IsStrike : Condition
 	
 	protected override bool Statement()
 	{
-		//return false;
 		return player.isStriking;
 	}
 	
