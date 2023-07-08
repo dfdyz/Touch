@@ -19,7 +19,7 @@ public class IsStrike : Condition
 	
 	protected override bool Statement()
 	{
-		return player.isStriking();
+		return player.isStriking;
 	}
 	
 	public override void OnStateEnter()

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 993d24a0eea2bbf43a8598b4ed76ca53, type: 3}
-  m_Name: A_Anim_WinTrigger
+  m_Name: A_Anim_WinTrue
   m_EditorClassIdentifier: 
   description: 
-  parameterType: 3
+  parameterType: 0
   parameterName: Win
-  boolValue: 0
+  boolValue: 1
   intValue: 0
   floatValue: 0
   whenToRun: 0
