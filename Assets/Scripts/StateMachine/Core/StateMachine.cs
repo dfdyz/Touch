@@ -75,6 +75,11 @@ namespace UOP1.StateMachine
 			return component;
 		}
 
+		public void AttachComponent<T>(T component) where T : Component
+		{
+            _cachedComponents.Add(typeof(T), component);
+        }
+
 		public new T GetComponent<T>() where T : Component
 		{
 			return TryGetComponent(out T component)
