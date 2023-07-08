@@ -19,12 +19,12 @@ public class MainLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameStart();
     }
 
     public void GameStart()
     {
-
+        StartCoroutine(gameStart());
     }
 
     void FixedUpdate()
@@ -41,8 +41,10 @@ public class MainLogic : MonoBehaviour
         {
             playerB.ReBorn(spawnPointB.transform.position);
         }
-
-
     }
 
+    private IEnumerator gameStart() {
+        yield return new WaitForSeconds(1.5f);
+        RebornPlayer(1);
+    }
 }

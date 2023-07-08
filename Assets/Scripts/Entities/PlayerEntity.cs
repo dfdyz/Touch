@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Player;
 using Input;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 using UOP1.StateMachine;
 
 public class PlayerEntity : EntityBase
@@ -22,9 +25,12 @@ public class PlayerEntity : EntityBase
     [Header("Arguements")]
     [SerializeField]
     private float maxSpeed = 5;
+    [SerializeField]
+    private AnimationCurve v_a_Curve;
+    
 
     [SerializeField]
-    private bool stun = false;
+    private bool stun = true;
 
     [SerializeField]
     private bool strike = false;
@@ -33,16 +39,20 @@ public class PlayerEntity : EntityBase
     [SerializeField]
     private bool reborning = false;
 
-
-
     [SerializeField]
     private float mass = 10;
 
+
+    
     private void Start()
     {
         rebornPos = transform.position;
     }
 
+    public float getAccelerate(float v)
+    {
+        return v_a_Curve.Evaluate(v/maxSpeed);
+    }
 
     public Vector3 GetDiraction()
     {
@@ -58,7 +68,7 @@ public class PlayerEntity : EntityBase
 
     public bool isStun()
     {
-        return stun && GetHP() > 0;
+        return stun || GetHP() <= 0 || reborning;
     }
 
     public bool isStriking()
@@ -84,6 +94,7 @@ public class PlayerEntity : EntityBase
     void Update()
     {
         HandleIndicator();
+        HandleReborn();
     }
 
     void FixedUpdate()
@@ -134,6 +145,10 @@ public class PlayerEntity : EntityBase
     private Vector3 rebornPos;
     public void ReBorn(Vector3 pos)
     {
+        rb.velocity = Vector3.zero;
+        stun = false;
+        strike = false;
+        miss = false;
         SetHP(GetMaxHP());
         rebornPos = pos;
         reborning = true;
@@ -144,8 +159,33 @@ public class PlayerEntity : EntityBase
         if(reborning)
         {
             Vector3 pos = transform.position;
-            transform.position = Vector3.Lerp(pos, rebornPos, 0.15f);
+            transform.position = Vector3.Lerp(pos, rebornPos, 0.05f);
             if((rebornPos - pos).magnitude <= 0.001f) reborning = false;
         }
     }
+
+    private Dictionary<Type, BuffBase> BuffContainer = new Dictionary<Type, BuffBase>();
+    public void SetBuff<T>(T buff) where T : BuffBase
+    {
+        if (BuffContainer.ContainsKey(typeof(T)))
+        {
+            BuffBase b = BuffContainer[typeof(T)];
+            if (b.getLevel() < buff.getLevel() || b.getTime() < buff.getTime())
+            {
+                BuffContainer[typeof(T)] = buff;
+            }
+        }
+        else
+        {
+            BuffContainer.Add(typeof(T), buff);
+        }
+    }
+
+    public void GetBuff<T>(out T buff) where T : BuffBase
+    {        
+        if(BuffContainer.ContainsKey(typeof(T))) buff = (T)BuffContainer[typeof(T)];
+        else buff = null;
+    }
+
+
 }
