@@ -7,9 +7,12 @@ public class StrikeAttacker : MonoBehaviour
 
     public void OnAttack(bool on,GameObject other)
     {
-        print($"OnAttack");
+        if (enabled)
+        {
+            print($"OnAttack");
         
-        StartCoroutine(DamageCoroutine());
+            StartCoroutine(DamageCoroutine());
+        }
     }
 
     private IEnumerator DamageCoroutine()
