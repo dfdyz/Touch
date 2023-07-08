@@ -9,6 +9,9 @@ public class HPBarCtrl : MonoBehaviour
 
     [SerializeField]
     private EntityBase entity;
+    [SerializeField]
+    private Camera cam;
+
 
     [SerializeField]
     private GameObject worldPointObj;
@@ -36,7 +39,7 @@ public class HPBarCtrl : MonoBehaviour
         //¸úËæ
         Vector3 pos = worldPointObj.transform.position;
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(pos);
+        Vector3 screenPos = cam.WorldToScreenPoint(pos);
 
         transform.position = screenPos;
     }

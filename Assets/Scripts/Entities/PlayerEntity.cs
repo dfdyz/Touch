@@ -54,6 +54,11 @@ public class PlayerEntity : EntityBase
         return v_a_Curve.Evaluate(v/maxSpeed);
     }
 
+    public void setStun(bool stun)
+    {
+        this.stun = stun;
+    }
+
     public Vector3 GetDiraction()
     {
         return playerInput.Direction;
