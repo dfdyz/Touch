@@ -221,13 +221,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22619c33f0389f4fa5dc58e4692b82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  maxHealth: 5
+  health: 30
+  maxHealth: 30
   playerDieEvent: {fileID: 11400000, guid: 097e72bb7155aa14097e727033583af1, type: 2}
   stateMachine: {fileID: 3850055811279344711}
   playerInput: {fileID: 3850055811279344707}
   indicator: {fileID: 3850055811734225917}
   hitBox: {fileID: 3850055811279344709}
+  castBox: {fileID: 3850055811279344704}
   Sprite: {fileID: 1605733232218179683}
   rb: {fileID: 3850055811279344708}
   id: 2

@@ -26,6 +26,8 @@ public class PlayerEntity : EntityBase
 
     [SerializeField]
     private CapsuleCollider hitBox;
+    [SerializeField]
+    private CapsuleCollider castBox;
 
     [SerializeField]
     private GameObject Sprite;
@@ -63,6 +65,7 @@ public class PlayerEntity : EntityBase
     public void SetHitBoxPosY(float Y)
     {
         hitBox.center = new Vector3(0,Y+1,0);
+        castBox.center = hitBox.center;
         Sprite.transform.localPosition = new Vector3(0, Y, 0);
     }
     private void Start()
@@ -126,7 +129,7 @@ public class PlayerEntity : EntityBase
     {
         GetBuff<BuffBase.HeavyMassBuff>(out var buff);
         if (buff != null){
-            //print(mass + buff.value());
+            print(mass + buff.value());
             return mass + buff.value(); }
         return mass;
     }
@@ -210,7 +213,6 @@ public class PlayerEntity : EntityBase
     void FixedUpdate()
     {
         rb.mass = getMass();
-
         
     }
 

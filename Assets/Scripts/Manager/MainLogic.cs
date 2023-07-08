@@ -48,8 +48,9 @@ public class MainLogic : MonoBehaviour
         if(player == 1) {
             playerA.ReBorn(spawnPointA.transform.position);
         }
-        if(player == 2)
+        else if(player == 2)
         {
+            print("6666");
             playerB.ReBorn(spawnPointB.transform.position);
         }
     }
