@@ -85,7 +85,7 @@ public class PlayerEntity : EntityBase
 
     public Vector3 GetDiraction()
     {
-        if (isWinning) return Vector3.zero;
+        if (isWinning || reborning) return Vector3.zero;
         return playerInput.Direction;
     }
     
