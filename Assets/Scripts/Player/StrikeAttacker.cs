@@ -9,7 +9,7 @@ public class StrikeAttacker : MonoBehaviour
     {
         if (on && !player.isStun())
         {
-            //print($"OnAttack");
+            print(gameObject.name + $"OnAttack");
             EntityBase entity = other.GetComponent<EntityBase>();
 
 
@@ -35,12 +35,12 @@ public class StrikeAttacker : MonoBehaviour
                 }
 
                 player.setStun(true);
-                player.rb.AddForce(v1_ * 50, ForceMode.Force);;
+                player.rb.AddForce(v1_ * 50, ForceMode.Force);
                 StartCoroutine(Stun(m1 / m2));
             }
             else
             {
-                entity.GetDamage(player.rb.velocity.magnitude * player.getMass()/150, player);
+                entity.GetDamage(player.rb.velocity.magnitude * player.getMass()/50, player);
                 StartCoroutine(Stun(0.5f));
             }
         }

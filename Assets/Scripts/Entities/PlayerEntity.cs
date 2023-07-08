@@ -24,6 +24,14 @@ public class PlayerEntity : EntityBase
     [SerializeField]
     private GameObject indicator;
 
+    [SerializeField]
+    private CapsuleCollider hitBox;
+    [SerializeField]
+    private CapsuleCollider castBox;
+
+    [SerializeField]
+    private GameObject Sprite;
+
     public Rigidbody rb;
 
     [Header("Arguements")] 
@@ -51,8 +59,15 @@ public class PlayerEntity : EntityBase
     [SerializeField]
     private float mass = 10;
 
+    private bool strikeCoolDown = false;
+    private bool missCoolDown = false;
 
-    
+    public void SetHitBoxPosY(float Y)
+    {
+        hitBox.center = new Vector3(0,Y+1,0);
+        castBox.center = hitBox.center;
+        Sprite.transform.localPosition = new Vector3(0, Y, 0);
+    }
     private void Start()
     {
         rebornPos = transform.position;
@@ -76,7 +91,7 @@ public class PlayerEntity : EntityBase
 
     public Vector3 GetDiraction()
     {
-        if (isWinning) return Vector3.zero;
+        if (isWinning || reborning) return Vector3.zero;
         return playerInput.Direction;
     }
     
@@ -112,11 +127,7 @@ public class PlayerEntity : EntityBase
     {
         get
         {
-            return playerInput.IsMissing;
-        }
-        set
-        {
-            playerInput.IsMissing = value;
+            return miss;
         }
     }
 
@@ -124,7 +135,6 @@ public class PlayerEntity : EntityBase
     {
         GetBuff<BuffBase.HeavyMassBuff>(out var buff);
         if (buff != null){
-            //print(mass + buff.value());
             return mass + buff.value(); }
         return mass;
     }
@@ -139,18 +149,45 @@ public class PlayerEntity : EntityBase
         return maxSpeed;
     }
 
+    private IEnumerator CoolDown(int type, float time = 1.8f)
+    {
+        if(type == 0)
+        {
+            strikeCoolDown = true;
+            yield return new WaitForSeconds(time);
+            strikeCoolDown = false;
+        }
+        else
+        {
+            missCoolDown = true;
+            yield return new WaitForSeconds(time);
+            missCoolDown = false;
+        }
+    }
+
     private void Strike()
     {
         if (playerInput.IsStriking)
         {
             playerInput.IsStriking = false;
 
-            if(GetDiraction().magnitude > 0.5f && !strike)
+            if(GetDiraction().magnitude > 0.5f && !strike && !miss && !strikeCoolDown)
             {
                 StartCoroutine(Striking());
             }
+        }
+    }
 
-           
+    private void Miss()
+    {
+        if (playerInput.IsMissing)
+        {
+            playerInput.IsMissing = false;
+            if (!strike && !miss && !missCoolDown)
+            {
+                StartCoroutine(Missing());
+            }
+
         }
     }
 
@@ -159,6 +196,15 @@ public class PlayerEntity : EntityBase
         strike = true;
         yield return new WaitForSeconds(0.1f);
         strike = false;
+        StartCoroutine(CoolDown(0));
+    }
+
+    private IEnumerator Missing()
+    {
+        miss = true;
+        yield return new WaitForSeconds(0.4f);
+        miss = false;
+        StartCoroutine(CoolDown(1));
     }
 
     void Update()
@@ -166,12 +212,12 @@ public class PlayerEntity : EntityBase
         HandleIndicator();
         HandleReborn();
         Strike();
+        Miss();
     }
 
     void FixedUpdate()
     {
         rb.mass = getMass();
-
         
     }
 
@@ -231,7 +277,7 @@ public class PlayerEntity : EntityBase
         {
             Vector3 pos = transform.position;
             transform.position = Vector3.Lerp(pos, rebornPos, 0.05f);
-            if((rebornPos - pos).magnitude <= 0.001f) reborning = false;
+            if((rebornPos - pos).magnitude <= 0.01f) reborning = false;
         }
     }
 
@@ -260,8 +306,7 @@ public class PlayerEntity : EntityBase
         }
         else
         {
-            print(t);
-            BuffContainer.Add(t, buff);
+            BuffContainer[t] = buff;
         }
     }
 

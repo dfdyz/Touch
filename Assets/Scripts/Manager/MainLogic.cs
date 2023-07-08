@@ -18,10 +18,17 @@ public class MainLogic : MonoBehaviour
     [SerializeField]
     private Transform spawnPointB;
 
+
+
     [Header("Listen to")] 
     [SerializeField] 
     private IntEventChannelSO playerDieEvent;
 
+    private int deathCountA = 0;
+    private int deathCountB = 0;
+
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +45,6 @@ public class MainLogic : MonoBehaviour
 
     private void OnPlayerDieRaised(int playerID)
     {
-        print($"player die : " + playerID);
         StartCoroutine(playerWin(playerID));
     }
     
@@ -48,7 +54,7 @@ public class MainLogic : MonoBehaviour
         if(player == 1) {
             playerA.ReBorn(spawnPointA.transform.position);
         }
-        if(player == 2)
+        else if(player == 2)
         {
             playerB.ReBorn(spawnPointB.transform.position);
         }
@@ -66,22 +72,56 @@ public class MainLogic : MonoBehaviour
 
     private IEnumerator playerWin(int deadPlayer)
     {
-        var waitTime = new WaitForSeconds(2f);
-        if (deadPlayer == 2)
-        {
-            playerA.isWinning = true;
-            yield return waitTime;
-            RebornPlayer(2);
-            playerA.isWinning = false;
-            print("player1 win over");
+        if(deadPlayer == 1) {
+            deathCountA++;
         }
-        else if(deadPlayer == 1)
+        else
         {
-            playerB.isWinning = true;
-            yield return waitTime;
-            RebornPlayer(1);
-            playerB.isWinning = false;
-            print("player2 win over");
+            deathCountB++;
         }
+
+        if (deathCountA >= 3 || deathCountB >= 3)
+        {
+            OnGameOver(deathCountA < deathCountB ? 1:2);
+            yield return null;
+        }
+        else  {
+            var waitTime = new WaitForSeconds(2f);
+            if (deadPlayer == 2)
+            {
+                playerA.isWinning = true;
+                yield return waitTime;
+                RebornPlayer(2);
+                playerA.isWinning = false;
+                print("player1 win over");
+            }
+            else if (deadPlayer == 1)
+            {
+                playerB.isWinning = true;
+                yield return waitTime;
+                RebornPlayer(1);
+                playerB.isWinning = false;
+
+            }
+        }
+        
     }
+
+    private void OnGameOver(int winPlayer)
+    {
+        PlayerEntity player = winPlayer == 1 ? playerA : playerB;
+        player.isWinning = true;
+        print("Player" + winPlayer + " Win");
+
+        //todo
+
+
+
+
+    }
+
+
+
+
+
 }
