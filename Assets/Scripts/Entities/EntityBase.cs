@@ -41,6 +41,11 @@ public class EntityBase : MonoBehaviour
         return health > 0;
     }
 
+    public void GetDamage(float delta)
+    {
+        health = health - delta > 0 ? health - delta : 0;
+    }
+
     public void SetHP(float hp)
     {
         health = hp;
