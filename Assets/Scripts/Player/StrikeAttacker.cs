@@ -9,7 +9,7 @@ public class StrikeAttacker : MonoBehaviour
     {
         if (on && !player.isStun())
         {
-            print($"OnAttack");
+            //print($"OnAttack");
             EntityBase entity = other.GetComponent<EntityBase>();
 
 

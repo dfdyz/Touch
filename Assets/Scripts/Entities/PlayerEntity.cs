@@ -98,11 +98,7 @@ public class PlayerEntity : EntityBase
     {
         get
         {
-            return playerInput.IsStriking;
-        }
-        set
-        {
-            playerInput.IsStriking = false;
+            return strike;
         }
     }
 
@@ -137,10 +133,33 @@ public class PlayerEntity : EntityBase
         return maxSpeed;
     }
 
+    private void Strike()
+    {
+        if (playerInput.IsStriking)
+        {
+            playerInput.IsStriking = false;
+
+            if(GetDiraction().magnitude > 0.5f && !strike)
+            {
+                StartCoroutine(Striking());
+            }
+
+           
+        }
+    }
+
+    private IEnumerator Striking()
+    {
+        strike = true;
+        yield return new WaitForSeconds(0.1f);
+        strike = false;
+    }
+
     void Update()
     {
         HandleIndicator();
         HandleReborn();
+        Strike();
     }
 
     void FixedUpdate()

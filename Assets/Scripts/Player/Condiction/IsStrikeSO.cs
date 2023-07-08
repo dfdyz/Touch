@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
@@ -14,8 +14,9 @@ public class IsStrike : Condition
 	protected PlayerEntity player;
 	public override void Awake(StateMachine stateMachine)
 	{
-		player = stateMachine.GetComponent<PlayerEntity>();
-	}
+        player = stateMachine.GetComponent<PlayerEntity>();
+ 
+    }
 	
 	protected override bool Statement()
 	{

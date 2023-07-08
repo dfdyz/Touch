@@ -20,14 +20,15 @@ public class IsMove : Condition
 	
 	protected override bool Statement()
 	{
-		if (s)
+		if (!s)
 		{
-			return rb.velocity.magnitude > 0.18f;
+            if (rb.velocity.magnitude > 0.18f) s = true;
         }
 		else
 		{
-            return rb.velocity.magnitude < 0.12f;
+			if (rb.velocity.magnitude < 0.12f) s = false;
         }
+		return s;
 	}
 	
 	public override void OnStateEnter()
