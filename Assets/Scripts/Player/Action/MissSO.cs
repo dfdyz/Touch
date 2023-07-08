@@ -12,19 +12,25 @@ public class Miss : StateAction
 {
 	protected new MissSO OriginSO => (MissSO)base.OriginSO;
 
-	public override void Awake(StateMachine stateMachine)
+    protected PlayerEntity player;
+
+    public override void Awake(StateMachine stateMachine)
 	{
-	}
+        player = stateMachine.GetComponent<PlayerEntity>();
+    }
 	
 	public override void OnUpdate()
 	{
+		player.rb.velocity = Vector3.zero;
 	}
 	
 	public override void OnStateEnter()
 	{
+		player.SetHitBoxPosY(3);
 	}
 	
 	public override void OnStateExit()
 	{
-	}
+        player.SetHitBoxPosY(0);
+    }
 }

@@ -531,7 +531,7 @@ MonoBehaviour:
   camA: {fileID: 741010504}
   camB: {fileID: 1227575492}
   viwer: {fileID: 1531110666}
-  maxDistance: 14
+  maxDistance: 27
 --- !u!114 &611721027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1921,7 +1921,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2479,10 +2479,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3850055811279344708, guid: 53f43f0485a883841a92f721d85808eb, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3850055811279344719, guid: 53f43f0485a883841a92f721d85808eb, type: 3}
       propertyPath: m_Name
       value: PlayerB
@@ -2496,14 +2492,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4523319681315280000, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4523319681315280003, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
-      propertyPath: _layers.m_Bits
-      value: 576
-      objectReference: {fileID: 0}
     - target: {fileID: 4523319681315280004, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2547,10 +2535,6 @@ PrefabInstance:
     - target: {fileID: 4523319681315280004, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4523319681315280006, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
-      propertyPath: maxSpeed
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4523319681315280061, guid: aadfd1e6942eb164dbf5bb485008cd63, type: 3}
       propertyPath: m_Name

@@ -11,14 +11,16 @@ public class IsMissingSO : StateConditionSO
 public class IsMissing : Condition
 {
 	protected new IsMissingSO OriginSO => (IsMissingSO)base.OriginSO;
+    protected PlayerEntity player;
 
-	public override void Awake(StateMachine stateMachine)
+    public override void Awake(StateMachine stateMachine)
 	{
-	}
+        player = stateMachine.GetComponent<PlayerEntity>();
+    }
 	
 	protected override bool Statement()
 	{
-		return true;
+		return player.isMiss;
 	}
 	
 	public override void OnStateEnter()
