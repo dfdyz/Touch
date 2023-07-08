@@ -16,7 +16,22 @@ public class PlayerEntity : EntityBase
     private bool stun = false;
 
     [SerializeField]
+    private bool strike = false;
+
+    [Header("Arguements")]
+    [SerializeField]
+    private bool miss = false;
+    
+
+
+    [SerializeField]
     private float mass = 10;
+
+
+    public Vector3 GetDiraction()
+    {
+        return Vector3.one;
+    }
 
 
 
@@ -29,6 +44,16 @@ public class PlayerEntity : EntityBase
     public bool isStun()
     {
         return stun;
+    }
+
+    public bool isStriking()
+    {
+        return strike;
+    }
+
+    public bool isMiss()
+    {
+        return miss;
     }
 
     public float getMass()
