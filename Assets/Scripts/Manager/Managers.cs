@@ -7,6 +7,8 @@ public class Managers : MonoBehaviour
     public static Managers Instance;
     public MultiCameraMgr MultiCameraMgr;
     public MainLogic LogicMgr;
+
+    public float dmgArg = 10;
     public static class GameLayers
     {
         public static int Player;
