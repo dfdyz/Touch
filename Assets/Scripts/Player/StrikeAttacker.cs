@@ -11,6 +11,8 @@ public class StrikeAttacker : MonoBehaviour
         {
             print($"OnAttack");
 
+            
+
             EntityBase entity = other.GetComponent<EntityBase>();
 
 
@@ -20,26 +22,30 @@ public class StrikeAttacker : MonoBehaviour
                 player.setStun(true);
                 player.rb.AddForce(-F * 100, ForceMode.Force);
                 //StartCoroutine(DamageEntity(entity));
-                StartCoroutine(Damage(player2));
+                StartCoroutine(DamagePlayer(player2));
+                StartCoroutine(Stun());
             }
-
-            StartCoroutine(Stun());
-
+            else
+            {
+                entity.GetDamage(player.rb.velocity.magnitude * player.getMass()/150, player);
+                StartCoroutine(Stun(0.5f));
+            }
         }
     }
 
-    private IEnumerator Damage(PlayerEntity entity)
+    private IEnumerator DamagePlayer(PlayerEntity entity)
     {
         Vector3 v1 = entity.rb.velocity;
         yield return new WaitForSeconds(0.07f);
         v1 = entity.rb.velocity - v1;
-        print(v1);
-        entity.GetDamage(v1.magnitude/entity.getMass()*Managers.Instance.dmgArg);
+        //print(v1);
+        entity.GetDamage(v1.magnitude/entity.getMass()*Managers.Instance.dmgArg, player);
     }
 
-    private IEnumerator Stun()
+
+    private IEnumerator Stun(float rate = 1f)
     {
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(player.getStunTime()*rate);
         player.setStun(false);
     }
 }

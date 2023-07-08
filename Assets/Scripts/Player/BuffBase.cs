@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Player
 {
-    public class BuffBase
+    public abstract class BuffBase
     {
         private int level;
         private float time;
@@ -31,9 +31,23 @@ namespace Assets.Scripts.Player
             return 0;
         }
 
-        public bool Alive(float dt)
+        public virtual void OnUpdate()
         {
+
+        }
+        public virtual void OnRemove()
+        {
+
+        }
+
+        public void upd(float dt)
+        {
+            OnUpdate();
             time -= dt;
+        }
+
+        public bool isAlive()
+        {
             return time > 0;
         }
 
@@ -50,7 +64,31 @@ namespace Assets.Scripts.Player
             }
         }
 
- 
+        public class HighSpeedBuff : BuffBase
+        {
+            public HighSpeedBuff(int level, float time) : base(level, time)
+            {
+                this.level = level;
+            }
+
+            public override float value()
+            {
+                return 10 + 5 * level;
+            }
+        }
+
+        public class LowStunBuff : BuffBase
+        {
+            public LowStunBuff(int level, float time) : base(level, time)
+            {
+                this.level = level;
+            }
+
+            public override float value()
+            {
+                return -0.3f*level;
+            }
+        }
 
     }
 }

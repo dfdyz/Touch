@@ -51,7 +51,7 @@ public class PlayerEntity : EntityBase
 
     public float getAccelerate(float v)
     {
-        return v_a_Curve.Evaluate(v/maxSpeed);
+        return v_a_Curve.Evaluate(v/getMaxSpeed());
     }
 
     public void setStun(bool stun)
@@ -64,7 +64,15 @@ public class PlayerEntity : EntityBase
         return playerInput.Direction;
     }
     
-
+    public float getStunTime()
+    {
+        GetBuff<BuffBase.LowStunBuff>(out var buff);
+        if (buff != null)
+        {
+            return 0.5f + buff.value();
+        }
+        return 0.5f;
+    }
     void Awake()
     {
         stateMachine.AttachComponent(this);
@@ -88,11 +96,20 @@ public class PlayerEntity : EntityBase
 
     public float getMass()
     {
+        GetBuff<BuffBase.HeavyMassBuff>(out var buff);
+        if (buff != null){
+            //print(mass + buff.value());
+            return mass + buff.value(); }
         return mass;
     }
 
     public float getMaxSpeed()
     {
+        GetBuff<BuffBase.HighSpeedBuff>(out var buff);
+        if (buff != null)
+        {
+            return maxSpeed + buff.value();
+        }
         return maxSpeed;
     }
 
@@ -170,19 +187,21 @@ public class PlayerEntity : EntityBase
     }
 
     private Dictionary<Type, BuffBase> BuffContainer = new Dictionary<Type, BuffBase>();
-    public void SetBuff<T>(T buff) where T : BuffBase
+    public void SetBuff<T>(Type t,T buff) where T : BuffBase
     {
         if (BuffContainer.ContainsKey(typeof(T)))
         {
             BuffBase b = BuffContainer[typeof(T)];
-            if (b.getLevel() < buff.getLevel() || b.getTime() < buff.getTime())
+            if (!b.isAlive()) BuffContainer[typeof(T)] = buff;
+            else if (b.getLevel() < buff.getLevel() || b.getTime() < buff.getTime())
             {
-                BuffContainer[typeof(T)] = buff;
+                BuffContainer[t] = buff;
             }
         }
         else
         {
-            BuffContainer.Add(typeof(T), buff);
+            print(t);
+            BuffContainer.Add(t, buff);
         }
     }
 
@@ -192,5 +211,14 @@ public class PlayerEntity : EntityBase
         else buff = null;
     }
 
-
+    public void HandleBuff(float dt)
+    {
+        foreach(KeyValuePair<Type,BuffBase> t_buff in BuffContainer)
+        {
+            if (t_buff.Value.isAlive())
+            {
+                t_buff.Value.upd(dt);
+            }
+        }
+    }
 }
