@@ -20,13 +20,26 @@ public class HPBarCtrl : MonoBehaviour
         s.x = entity.GetHPRate();
         Internal.transform.localScale = s;
 
+        /**
         //¸úËæ
         Vector3 pos = worldPointObj.transform.position;
         
         Vector3 screenPos = Camera.main.WorldToScreenPoint(pos);
 
         transform.position = screenPos;
-
+        **/
 
     }
+
+    private void FixedUpdate()
+    {
+        //¸úËæ
+        Vector3 pos = worldPointObj.transform.position;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(pos);
+
+        transform.position = screenPos;
+    }
+
+
 }

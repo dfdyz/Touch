@@ -38,10 +38,10 @@ public class Movement : StateAction
         Vector3 Fn = targetVelocy.normalized - currentVelocy.normalized;  //方向修正补偿力
         Vector3 F = targetVelocy - currentVelocy;  //修正力
 
-        float fnArg = 0.5f;
-        float fArg = 100f;
+        float fnArg = 8f*player.getMass();
+        float fArg = player.getAccelerate(currentVelocy.magnitude);
 
-        F = (F + Fn * fnArg) * fArg;
+        F = F * fArg + Fn * fnArg;
 
         rb.AddForce(F, ForceMode.Force);
     }
