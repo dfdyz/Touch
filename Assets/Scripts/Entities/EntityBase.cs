@@ -46,6 +46,11 @@ public class EntityBase : MonoBehaviour
         health = hp;
     }
 
+    public float GetHPRate()
+    {
+        return GetHP()/GetMaxHP();
+    }
+
     public void Heal(float hp)
     {
         health = Mathf.Clamp(health + hp, 0, GetMaxHP());

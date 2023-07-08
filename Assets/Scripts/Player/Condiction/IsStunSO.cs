@@ -29,5 +29,6 @@ public class IsStun : Condition
 	
 	public override void OnStateExit()
 	{
+
 	}
 }

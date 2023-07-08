@@ -8,7 +8,10 @@ public class PlayerEntity : EntityBase
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
-   
+
+    [SerializeField]
+    private GameObject indicator;
+
     public Rigidbody rb;
 
     [Header("Arguements")]
@@ -70,7 +73,7 @@ public class PlayerEntity : EntityBase
 
     void Update()
     {
-        
+        HandleIndicator();
     }
 
     void FixedUpdate()
@@ -78,11 +81,44 @@ public class PlayerEntity : EntityBase
         rb.mass = getMass();
     }
 
+    //public void SetC
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("World")) return;
-
+        int layer = collision.collider.gameObject.layer;
+        if (layer == Managers.GameLayers.World) return;
         
+        if (layer == Managers.GameLayers.Player)
+        {
+
+        }
+
+        if (layer == Managers.GameLayers.Entity)
+        {
+
+        }
+        
+    }
+
+    private void HandleIndicator()
+    {
+        Vector3 v = rb.velocity;
+
+        bool hide = v.magnitude < 0.1f;
+        indicator.SetActive(!hide);
+
+        if(hide)
+        {
+            return;
+        }
+        else
+        {
+            float ang = Vector2.SignedAngle(Vector2.right, new Vector2(v.x , v.z));
+            indicator.transform.localRotation = Quaternion.Euler(0, -ang, 0);
+        }
+
+
+
     }
 
 
