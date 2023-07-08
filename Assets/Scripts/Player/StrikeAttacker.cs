@@ -40,7 +40,7 @@ public class StrikeAttacker : MonoBehaviour
             }
             else
             {
-                entity.GetDamage(player.rb.velocity.magnitude * player.getMass()/150, player);
+                entity.GetDamage(player.rb.velocity.magnitude * player.getMass()/50, player);
                 StartCoroutine(Stun(0.5f));
             }
         }
