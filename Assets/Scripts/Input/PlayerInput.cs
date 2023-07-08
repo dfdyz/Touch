@@ -21,7 +21,7 @@ namespace Input
             get
             {
                 direction.x = x_input;
-                direction.y = y_input;
+                direction.z = y_input;
                 return direction;
             }
         }

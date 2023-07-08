@@ -20,6 +20,9 @@ public class Movement : StateAction
 
 	public override void OnUpdate()
 	{
+
+
+
 	}
 
     public override void OnFixedUpdate()
@@ -28,7 +31,7 @@ public class Movement : StateAction
 
         Vector3 dir = player.GetDiraction();
         float maxSpeed = player.getMaxSpeed();
-        Vector3 targetVelocy = dir * maxSpeed;
+        Vector3 targetVelocy = dir.normalized * maxSpeed;
 
         Vector3 currentVelocy = rb.velocity;
 
@@ -36,7 +39,7 @@ public class Movement : StateAction
         Vector3 F = targetVelocy - currentVelocy;  //修正力
 
         float fnArg = 0.5f;
-        float fArg = 0.2f;
+        float fArg = 100f;
 
         F = (F + Fn * fnArg) * fArg;
 
