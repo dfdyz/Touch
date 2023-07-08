@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Input;
 using UnityEngine;
 using UOP1.StateMachine;
 
@@ -8,6 +9,9 @@ public class PlayerEntity : EntityBase
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
+    
+    [SerializeField]
+    private PlayerInput playerInput;
    
     public Rigidbody rb;
 
@@ -22,20 +26,16 @@ public class PlayerEntity : EntityBase
     private bool strike = false;
     [SerializeField]
     private bool miss = false;
-
-
-  
-
+    
     [SerializeField]
     private float mass = 10;
-
+    
 
     public Vector3 GetDiraction()
     {
-        return Vector3.one;
+        return playerInput.Direction;
     }
-
-
+    
 
     void Awake()
     {
@@ -50,12 +50,12 @@ public class PlayerEntity : EntityBase
 
     public bool isStriking()
     {
-        return strike;
+        return playerInput.IsStriking;
     }
 
     public bool isMiss()
     {
-        return miss;
+        return playerInput.IsMissing;
     }
 
     public float getMass()
