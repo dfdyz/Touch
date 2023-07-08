@@ -6,6 +6,7 @@ public class Managers : MonoBehaviour
 {
     public static Managers Instance;
     public MultiCameraMgr MultiCameraMgr;
+    public MainLogic LogicMgr;
     public static class GameLayers
     {
         public static int Player;

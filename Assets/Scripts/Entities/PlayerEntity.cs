@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UOP1.StateMachine;
 
 public class PlayerEntity : EntityBase
@@ -25,13 +26,18 @@ public class PlayerEntity : EntityBase
     private bool strike = false;
     [SerializeField]
     private bool miss = false;
+    [SerializeField]
+    private bool reborning = false;
 
 
-  
 
     [SerializeField]
     private float mass = 10;
 
+    private void Start()
+    {
+        rebornPos = transform.position;
+    }
 
     public Vector3 GetDiraction()
     {
@@ -48,7 +54,7 @@ public class PlayerEntity : EntityBase
 
     public bool isStun()
     {
-        return stun;
+        return stun && GetHP() > 0;
     }
 
     public bool isStriking()
@@ -79,7 +85,10 @@ public class PlayerEntity : EntityBase
     void FixedUpdate()
     {
         rb.mass = getMass();
+
+        
     }
+
 
     //public void SetC
 
@@ -116,10 +125,23 @@ public class PlayerEntity : EntityBase
             float ang = Vector2.SignedAngle(Vector2.right, new Vector2(v.x , v.z));
             indicator.transform.localRotation = Quaternion.Euler(0, -ang, 0);
         }
-
-
-
     }
 
+    private Vector3 rebornPos;
+    public void ReBorn(Vector3 pos)
+    {
+        SetHP(GetMaxHP());
+        rebornPos = pos;
+        reborning = true;
+    }
 
+    public void HandleReborn()
+    {
+        if(reborning)
+        {
+            Vector3 pos = transform.position;
+            transform.position = Vector3.Lerp(pos, rebornPos, 0.15f);
+            if((rebornPos - pos).magnitude <= 0.001f) reborning = false;
+        }
+    }
 }
