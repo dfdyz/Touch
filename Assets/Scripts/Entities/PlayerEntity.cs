@@ -8,15 +8,32 @@ public class PlayerEntity : EntityBase
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
-    [SerializeField]
-    private Rigidbody rb;
+   
+    public Rigidbody rb;
 
     [Header("Arguements")]
+    [SerializeField]
+    private float maxSpeed = 5;
+
     [SerializeField]
     private bool stun = false;
 
     [SerializeField]
+    private bool strike = false;
+    [SerializeField]
+    private bool miss = false;
+
+
+  
+
+    [SerializeField]
     private float mass = 10;
+
+
+    public Vector3 GetDiraction()
+    {
+        return Vector3.one;
+    }
 
 
 
@@ -31,9 +48,24 @@ public class PlayerEntity : EntityBase
         return stun;
     }
 
+    public bool isStriking()
+    {
+        return strike;
+    }
+
+    public bool isMiss()
+    {
+        return miss;
+    }
+
     public float getMass()
     {
         return mass;
+    }
+
+    public float getMaxSpeed()
+    {
+        return maxSpeed;
     }
 
     void Update()
