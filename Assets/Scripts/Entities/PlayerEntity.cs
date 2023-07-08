@@ -8,21 +8,23 @@ public class PlayerEntity : EntityBase
     [Header("Components")]
     [SerializeField]
     private StateMachine stateMachine;
-    [SerializeField]
-    private Rigidbody rb;
+   
+    public Rigidbody rb;
 
     [Header("Arguements")]
+    [SerializeField]
+    private float maxSpeed = 5;
+
     [SerializeField]
     private bool stun = false;
 
     [SerializeField]
     private bool strike = false;
-
-    [Header("Arguements")]
     [SerializeField]
     private bool miss = false;
-    
 
+
+  
 
     [SerializeField]
     private float mass = 10;
@@ -59,6 +61,11 @@ public class PlayerEntity : EntityBase
     public float getMass()
     {
         return mass;
+    }
+
+    public float getMaxSpeed()
+    {
+        return maxSpeed;
     }
 
     void Update()

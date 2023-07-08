@@ -17,16 +17,33 @@ public class Movement : StateAction
 	{
 		player = stateMachine.GetComponent<PlayerEntity>();
 	}
-	
+
 	public override void OnUpdate()
 	{
-
-
-
-
 	}
-	
-	public override void OnStateEnter()
+
+    public override void OnFixedUpdate()
+    {
+        Rigidbody rb = player.rb;
+
+        Vector3 dir = player.GetDiraction();
+        float maxSpeed = player.getMaxSpeed();
+        Vector3 targetVelocy = dir * maxSpeed;
+
+        Vector3 currentVelocy = rb.velocity;
+
+        Vector3 Fn = targetVelocy.normalized - currentVelocy.normalized;  //方向修正补偿力
+        Vector3 F = targetVelocy - currentVelocy;  //修正力
+
+        float fnArg = 0.5f;
+        float fArg = 0.2f;
+
+        F = (F + Fn * fnArg) * fArg;
+
+        rb.AddForce(F, ForceMode.Force);
+    }
+
+    public override void OnStateEnter()
 	{
 	}
 	

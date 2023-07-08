@@ -11,14 +11,15 @@ public class IsStrikeSO : StateConditionSO
 public class IsStrike : Condition
 {
 	protected new IsStrikeSO OriginSO => (IsStrikeSO)base.OriginSO;
-
+	protected PlayerEntity player;
 	public override void Awake(StateMachine stateMachine)
 	{
+		player = stateMachine.GetComponent<PlayerEntity>();
 	}
 	
 	protected override bool Statement()
 	{
-		return true;
+		return player.isStriking();
 	}
 	
 	public override void OnStateEnter()
