@@ -14,8 +14,7 @@ namespace Input
     [CreateAssetMenu(fileName = "InputReader", menuName = "Game/InputReader")]
     public class InputReader : ScriptableObject,GameInput.IPlayer_1Actions,GameInput.IPlayer_2Actions
     {
-        [SerializeField]
-        private PlayerID _playerID;
+        public PlayerID _playerID;
         
         private GameInput _gameInput;
 
@@ -49,12 +48,14 @@ namespace Input
 
         public void OnXMove(InputAction.CallbackContext context)
         {
-            XMoveEvent.Invoke(context.ReadValue<float>());
+            // if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
+                XMoveEvent.Invoke(context.ReadValue<float>());
         }
 
         public void OnYMove(InputAction.CallbackContext context)
         {
-            YMoveEvent.Invoke(context.ReadValue<float>());
+            // if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
+                YMoveEvent.Invoke(context.ReadValue<float>());
         }
 
         public void OnStrike(InputAction.CallbackContext context)
