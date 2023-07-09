@@ -277,7 +277,10 @@ public class PlayerEntity : EntityBase
         {
             Vector3 pos = transform.position;
             transform.position = Vector3.Lerp(pos, rebornPos, 0.05f);
-            if((rebornPos - pos).magnitude <= 0.01f) reborning = false;
+            if ((rebornPos - pos).magnitude <= 0.1f) {
+                AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_reborn);
+                reborning = false; 
+            }
         }
     }
 
