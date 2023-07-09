@@ -177,8 +177,8 @@ ScriptedImporter:
     uvTransform: {x: 253, y: 2387}
   - name: player1_bar
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
