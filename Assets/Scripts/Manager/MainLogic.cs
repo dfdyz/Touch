@@ -39,7 +39,7 @@ public class MainLogic : MonoBehaviour
     public void GameStart()
     {
         StartCoroutine(gameStart());
-
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Bgm, AudioMgr.Instance.Bgm_Battle);
         playerDieEvent.OnEventRaised += OnPlayerDieRaised;
     }
 
@@ -112,6 +112,9 @@ public class MainLogic : MonoBehaviour
         PlayerEntity player = winPlayer == 1 ? playerA : playerB;
         player.isWinning = true;
         print("Player" + winPlayer + " Win");
+
+        AudioMgr.Instance.StopSound(AudioMgr.SoundType.Bgm);
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_Win);
 
         //todo
 
