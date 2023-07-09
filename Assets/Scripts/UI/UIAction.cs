@@ -14,7 +14,11 @@ namespace Assets.Scripts.UI
         private GameObject battlePannel;
         [SerializeField]
         private GameObject winPannel;
-        
+        [SerializeField]
+        private GameObject teachPannel;
+
+        private GameObject _teachPannel;
+
         private GameObject CreateUICanvas(GameObject prefab)
         {
             // Time.timeScale = 0;
@@ -29,6 +33,8 @@ namespace Assets.Scripts.UI
             anim.SetFloat("Speed",1);
             anim.Play("kick");
             _startPannel.SetActive(false);
+            _teachPannel = CreateUICanvas(teachPannel);
+            _teachPannel.SetActive(true);
         }
 
         public void CreatChosePannel()
@@ -65,6 +71,10 @@ namespace Assets.Scripts.UI
             SceneManager.LoadScene("StartScene");
         }
 
-
+        public void OnTeachingClicked()
+        {
+            teachPannel.SetActive(false);
+            CreatChosePannel();
+        }
     }
 }

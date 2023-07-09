@@ -9,7 +9,6 @@ namespace Assets.Scripts.UI
 
         public void CreatChose()
         {
-            uiAction.CreatChosePannel();
         }
     }
 }

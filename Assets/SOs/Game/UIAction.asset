@@ -16,3 +16,4 @@ MonoBehaviour:
   chosePannel: {fileID: 8547711234237750159, guid: c437fb05e6f77094bb3c52d20d1c910a, type: 3}
   battlePannel: {fileID: 0}
   winPannel: {fileID: 6066699265528679782, guid: 45e6d903f478f7d4fbe2dfb039f2c2b4, type: 3}
+  teachPannel: {fileID: 473936521566678142, guid: e923482583a9966468cc00f6400866d2, type: 3}
