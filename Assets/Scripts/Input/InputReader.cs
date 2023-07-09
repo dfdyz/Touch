@@ -48,13 +48,13 @@ namespace Input
 
         public void OnXMove(InputAction.CallbackContext context)
         {
-            // if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
+            if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
                 XMoveEvent.Invoke(context.ReadValue<float>());
         }
 
         public void OnYMove(InputAction.CallbackContext context)
         {
-            // if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
+            if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
                 YMoveEvent.Invoke(context.ReadValue<float>());
         }
 
