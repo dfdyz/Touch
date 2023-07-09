@@ -13,11 +13,13 @@ public class Miss : StateAction
 	protected new MissSO OriginSO => (MissSO)base.OriginSO;
 
     protected PlayerEntity player;
+    protected Animator anim;
 
     public override void Awake(StateMachine stateMachine)
 	{
         player = stateMachine.GetComponent<PlayerEntity>();
-    }
+        anim = player.GetComponentInChildren<Animator>();
+	}
 	
 	public override void OnUpdate()
 	{
@@ -27,11 +29,13 @@ public class Miss : StateAction
 	public override void OnStateEnter()
 	{
 		player.SetHitBoxPosY(3);
+		anim.SetBool("Miss",true);
         AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_miss);
     }
 	
 	public override void OnStateExit()
 	{
-        player.SetHitBoxPosY(0);
+		anim.SetBool("Miss",false);
+		player.SetHitBoxPosY(0);
     }
 }
