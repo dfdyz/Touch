@@ -6970,7 +6970,7 @@ MonoBehaviour:
   playerB: {fileID: 1648477630}
   spawnPointA: {fileID: 616694532}
   spawnPointB: {fileID: 1734510540}
-  uiAction: {fileID: 0}
+  uiAction: {fileID: 11400000, guid: 28e698d2c411cc04b97ba0e0da0bf5e2, type: 2}
   playerDieEvent: {fileID: 11400000, guid: 097e72bb7155aa14097e727033583af1, type: 2}
 --- !u!1 &614065201
 GameObject:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
@@ -57,6 +58,11 @@ namespace Assets.Scripts.UI
         public void OnPlayerConfirm(int playerid)
         {
             Managers.Instance.PlayerConfirm(playerid);
+        }
+
+        public void BacktoStart()
+        {
+            SceneManager.LoadScene("StartScene");
         }
 
 
