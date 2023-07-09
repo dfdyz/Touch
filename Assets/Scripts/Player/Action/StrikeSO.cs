@@ -27,6 +27,7 @@ public class Strike : StateAction
 	public override void OnStateEnter()
 	{
 		v = player.GetDiraction().normalized;
+		AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_Strike);
     }
 	
 	public override void OnStateExit()

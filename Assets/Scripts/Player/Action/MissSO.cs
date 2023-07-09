@@ -27,7 +27,8 @@ public class Miss : StateAction
 	public override void OnStateEnter()
 	{
 		player.SetHitBoxPosY(3);
-	}
+        AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_miss);
+    }
 	
 	public override void OnStateExit()
 	{

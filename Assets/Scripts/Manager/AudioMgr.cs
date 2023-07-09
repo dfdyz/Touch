@@ -17,10 +17,13 @@ public class AudioMgr : MonoBehaviour
     public AudioClip Bgm_Battle;
     public AudioClip Sound_Hit;
     public AudioClip Sound_Win;
+    public AudioClip Sound_Strike;
+    public AudioClip Sound_miss;
+    public AudioClip Sound_reborn;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         BgmSource = this.AddComponent<AudioSource>();
         HitSoundSource = this.AddComponent<AudioSource>();
