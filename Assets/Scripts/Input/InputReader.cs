@@ -12,7 +12,7 @@ namespace Input
     }
     
     [CreateAssetMenu(fileName = "InputReader", menuName = "Game/InputReader")]
-    public class InputReader : ScriptableObject,GameInput.IPlayer_1Actions,GameInput.IPlayer_2Actions
+    public class InputReader : ScriptableObject
     {
         public PlayerID _playerID;
         
@@ -27,60 +27,58 @@ namespace Input
 
         private void OnEnable()
         {
-            if (_gameInput == null)
-            {
-                _gameInput = new GameInput();
-                
-            }
-            
-            switch (_playerID)
-            {
-                case PlayerID.Player_1:
-                    _gameInput.Player_1.SetCallbacks(this);
-                    _gameInput.Player_1.Enable();
-                    break;
-                case PlayerID.Player_2:
-                    _gameInput.Player_2.SetCallbacks(this);
-                    _gameInput.Player_2.Enable();
-                    break;  
-            }
+            // if (_gameInput == null)
+            // {
+            //     _gameInput = new GameInput();
+            //     
+            // }
+            //
+            // switch (_playerID)
+            // {
+            //     case PlayerID.Player_1:
+            //         _gameInput.Player_1.SetCallbacks(this);
+            //         _gameInput.Player_1.Enable();
+            //         break;
+            //     case PlayerID.Player_2:
+            //         _gameInput.Player_2.SetCallbacks(this);
+            //         _gameInput.Player_2.Enable();
+            //         break;  
+            // }
         }
 
-        public void OnXMove(InputAction.CallbackContext context)
+        public void OnXMove(float value)
         {
-            if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
-                XMoveEvent.Invoke(context.ReadValue<float>());
+            XMoveEvent.Invoke(value);
         }
 
-        public void OnYMove(InputAction.CallbackContext context)
+        public void OnYMove(float value)
         {
-            if(context.phase is InputActionPhase.Started or InputActionPhase.Canceled)
-                YMoveEvent.Invoke(context.ReadValue<float>());
+            YMoveEvent.Invoke(value);
         }
 
-        public void OnStrike(InputAction.CallbackContext context)
+        public void OnStrike(bool pressed)
         {
-            switch (context.phase)
+            switch (pressed)
             {
-                case InputActionPhase.Performed:
+                case true:
                     StrikeEvent.Invoke();
                     break;
                 
-                case InputActionPhase.Canceled:
+                case false:
                     StrikeCancledEvent.Invoke();
                     break;
             }
         }
 
-        public void OnMiss(InputAction.CallbackContext context)
+        public void OnMiss(bool pressed)
         {
-            switch (context.phase)
+            switch (pressed)
             {
-                case InputActionPhase.Performed:
+                case true:
                     MissEvent.Invoke();
                     break;
                 
-                case InputActionPhase.Canceled:
+                case false:
                     MissCancledEvent.Invoke();
                     break;
             }

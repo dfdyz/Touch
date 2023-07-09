@@ -58,7 +58,11 @@ namespace Input
 
         private void OnXMove(float value) => x_input = value;
         private void OnYMove(float value) => y_input = value;
-        private void OnStrike() => onStrike = true;
+        private void OnStrike()
+        {
+            onStrike = true;
+        }
+
         private void OnStrikeCancled() => onStrike = false;
         private void OnMiss() => onMiss = true;
         private void OnMissCancled() => onMiss = false;
