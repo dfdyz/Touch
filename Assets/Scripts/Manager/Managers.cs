@@ -8,6 +8,7 @@ public class Managers : MonoBehaviour
     public static Managers Instance;
     public MultiCameraMgr MultiCameraMgr;
     public MainLogic LogicMgr;
+    public AudioMgr AudioMgr;
 
     public float dmgArg = 10;
     public static float addSpeed_1;

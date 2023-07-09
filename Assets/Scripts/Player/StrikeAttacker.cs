@@ -9,9 +9,9 @@ public class StrikeAttacker : MonoBehaviour
     {
         if (on && !player.isStun())
         {
-            print(gameObject.name + $"OnAttack");
+            
             EntityBase entity = other.GetComponent<EntityBase>();
-
+            AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_Hit);
 
             if (entity is PlayerEntity player2)
             {
