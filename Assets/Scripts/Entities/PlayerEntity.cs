@@ -66,7 +66,7 @@ public class PlayerEntity : EntityBase
     {
         hitBox.center = new Vector3(0,Y+1,0);
         castBox.center = hitBox.center;
-        Sprite.transform.localPosition = new Vector3(0, Y, 0);
+        // Sprite.transform.localPosition = new Vector3(0, Y, 0);
     }
     private void Start()
     {
@@ -202,7 +202,7 @@ public class PlayerEntity : EntityBase
     private IEnumerator Missing()
     {
         miss = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         miss = false;
         StartCoroutine(CoolDown(1));
     }
