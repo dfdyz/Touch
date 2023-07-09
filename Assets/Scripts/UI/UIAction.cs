@@ -11,6 +11,8 @@ namespace Assets.Scripts.UI
         private GameObject chosePannel;
         [SerializeField] 
         private GameObject battlePannel;
+        [SerializeField]
+        private GameObject winPannel;
         
         private GameObject CreateUICanvas(GameObject prefab)
         {
@@ -31,6 +33,11 @@ namespace Assets.Scripts.UI
         public void CreatChosePannel()
         {
             CreateUICanvas(chosePannel);
+        }
+
+        public GameObject CreatWinPannel()
+        {
+            return CreateUICanvas(winPannel);
         }
 
         public void PointerEnterStart()

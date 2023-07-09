@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainLogic : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class MainLogic : MonoBehaviour
 
     [SerializeField]
     private Transform spawnPointB;
+
+    [SerializeField] 
+    private UIAction uiAction; 
 
 
 
@@ -117,10 +122,16 @@ public class MainLogic : MonoBehaviour
         AudioMgr.Instance.PlaySound(AudioMgr.SoundType.Hit, AudioMgr.Instance.Sound_Win);
 
         //todo
+        StartCoroutine(GameEndCorutine(winPlayer));
 
+    }
 
-
-
+    private IEnumerator GameEndCorutine(int winPlayer)
+    {
+        var pannel = uiAction.CreatWinPannel();
+        var Text = pannel.GetComponentInChildren<Text>();
+        Text.text = winPlayer == 1 ? "Player1 Win!!" : "Player2 Win!!";
+        yield return null;
     }
 
 

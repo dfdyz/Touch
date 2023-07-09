@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3990376280889549781, guid: 1350f0229420ba5469ea6cbc1f75cc54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1350f0229420ba5469ea6cbc1f75cc54, type: 3}
 --- !u!1 &740984272
@@ -457,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MultiCameraMgr: {fileID: 0}
   LogicMgr: {fileID: 0}
+  AudioMgr: {fileID: 0}
   dmgArg: 10
 --- !u!4 &1696118762
 Transform:
